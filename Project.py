@@ -31,8 +31,8 @@ def load_data(data_directory: str = "SA/Musical_instruments_reviews.csv", split:
 
     # Plot the ratings
     ax = df.overall.value_counts().plot(kind='bar')
-    fig = ax.get_figure()
-    fig.savefig("RatingsScore.png")
+    fig1 = ax.get_figure()
+    fig1.savefig("RatingsScore.png")
 
     # Change the ratings Rating(>3) is 1 and Rating(<=3) is 0
     df.overall[df.overall <= 3] = 0
@@ -40,8 +40,8 @@ def load_data(data_directory: str = "SA/Musical_instruments_reviews.csv", split:
 
     # Plot the boolean ratings
     ax = df.overall.value_counts().plot(kind='bar')
-    fig = ax.get_figure()
-    fig.savefig("score_boolean.png")
+    fig2 = ax.get_figure()
+    fig2.savefig("score_boolean.png")
 
     # To balance classes, select equal samples from each class
     pos_df = df[df.overall == 1][:1200]
@@ -213,12 +213,7 @@ def plot_results():
     blue_patch = mpatches.Patch(color="Blue", label="Recall")
     red_patch = mpatches.Patch(color="Red", label="F-Score")
 
-    # precisionValues = [0.7598425196551243, 0.7837837837535219, 0.79599999996816, 0.7816091953723521, 0.794007490606966]
-    # recallValues = [0.7782258064202328, 0.8185483870637682, 0.8024193548063541, 0.8225806451281217, 0.8548387096429501]
-    # fScoreValues = [0.7689243027582102, 0.8007889546035192, 0.7991967871164981, 0.8015717092022957, 0.8233009708418135]
-    # lossValues = [10, 1, 0.5, 0.25, 0.1]
-
-    plot1 = plt.figure(1)
+    plot1 = plt.figure(3)
     plt.plot(precisionValues, color="Green")
     plt.plot(recallValues, color="Blue")
     plt.plot(fScoreValues, color="Red")
@@ -226,10 +221,10 @@ def plot_results():
     plt.xlabel('Timeline')
     plt.ylabel('Accuracy Report values')
 
-    # plot2 = plt.figure(2)
-    # plt.plot(lossValues, color="Black")
-    # plt.xlabel('Timeline')
-    # plt.ylabel('Losses')
+    plot2 = plt.figure(4)
+    plt.plot(lossValues, color="Black")
+    plt.xlabel('Timeline')
+    plt.ylabel('Losses')
     plt.show()
 
 
