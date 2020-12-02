@@ -189,7 +189,7 @@ def evaluate_model(tokenizer, textcat, test_data: list) -> dict:
 # Function to test model for an input sample review
 def test_model(input_data: str = TEST_REVIEW):
     #  Load saved trained model
-    loaded_model = spacy.load("nlp_model_AmazonReviews")
+    loaded_model = spacy.load("NLP_Model_AmazonReviews")
     # Generate prediction
     parsed_text = loaded_model(input_data)
     # Determine prediction to return
@@ -231,16 +231,3 @@ def plot_results():
 train, test = load_data()
 train_model(train, test, 20)
 plot_results()
-
-# reviewText = input("Do you wish to review this code ?!")
-# test_model(reviewText)
-
-# Sample Values to test graph
-# lossValues = [9.854817769024521, 1.7885053599893581, 0.5402437562370324, 0.2061476997223508, 0.08985383385834211,
-#               0.05884138647161308]
-# precisionValues = [0.8341968911484872, 0.8119999999675199, 0.8072289156302317, 0.7992125983937317, 0.7919999999683199,
-#                    0.7991967871164981]
-# recallValues = [0.6491935483609196, 0.8185483870637682, 0.8104838709350611, 0.8185483870637682, 0.7983870967420005,
-#                 0.8024193548063541]
-# fScoreValues = [0.7301587301256164, 0.8152610441439655, 0.8088531186797241, 0.8087649402068221, 0.7951807228596313,
-#                 0.8008048289416175]
