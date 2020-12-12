@@ -3,12 +3,13 @@ import warnings
 import random
 import spacy
 import matplotlib.patches as mpatches
+from cffi.backend_ctypes import xrange
 from spacy.util import minibatch, compounding
 from sklearn.model_selection import train_test_split
 from matplotlib import pyplot as plt
 
 warnings.filterwarnings('ignore')
-TEST_REVIEW = "The product was amazing. I loved it. I would definitely recommend it.."
+TEST_REVIEW = "ok"
 precisionValues, recallValues, fScoreValues, lossValues = [], [], [], []
 
 
@@ -18,6 +19,7 @@ def load_data(data_directory: str = "SA/Musical_instruments_reviews.csv", split:
     df = pd.read_csv(data_directory)
 
     # Check data for unique values and NA counts
+    print("--------------------- DATASET ANALYSIS ------------------------")
     print(f"Number of unique customers in the dataset : {len(df['reviewerID'].unique())}")
     print(f"Number of unique products that were reviewed : {len(df['asin'].unique())}")
     print(f"\nColumns having blank values:")
@@ -191,6 +193,7 @@ def test_model(input_data: str = TEST_REVIEW):
     #  Load saved trained model
     loaded_model = spacy.load("NLP_Model_AmazonReviews")
     # Generate prediction
+
     parsed_text = loaded_model(input_data)
     # Determine prediction to return
     if parsed_text.cats["pos"] > parsed_text.cats["neg"]:
@@ -200,7 +203,7 @@ def test_model(input_data: str = TEST_REVIEW):
         prediction = "Negative"
         score = parsed_text.cats["neg"]
     print(
-        f"Review text: {input_data}\nPredicted sentiment: {prediction}"
+        f"\nPredicted sentiment: {prediction}"
         f"\tScore: {score}"
     )
 
@@ -229,5 +232,7 @@ def plot_results():
 
 
 train, test = load_data()
-train_model(train, test, 20)
+train_model(train, test, 25)
 plot_results()
+# review = input("\nPlease enter your feedback comments : ")
+# test_model(review)
